@@ -4,6 +4,7 @@ class CreateSeat < ActiveRecord::Migration[5.0]
       t.boolean :occupied?
       t.integer :flight_id
       t.string :class
+      t.timestamps
     end
   end
 end

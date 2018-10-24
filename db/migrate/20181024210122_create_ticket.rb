@@ -6,6 +6,7 @@ class CreateTicket < ActiveRecord::Migration[5.0]
       t.string :class_status
       t.boolean :round_trip?
       t.float :price
+      t.timestamps
     end
   end
 end
