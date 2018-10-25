@@ -125,7 +125,7 @@ class UI
     party_num = gets.chomp.to_i
     self.current_person.update(party_count: party_num)
     0.upto(party_num) do |int|
-      Ticket.create({user_id: self.current_person.id, flight_id: matched_flights[res_num - 1], class_status: 'economy', round_trip?: false, price: rand(100..5000).to_f})
+      Ticket.create({user_id: self.current_person.id, flight_id: (matched_flights[res_num - 1]).id, class_status: 'economy', round_trip?: false, price: rand(100..5000).to_f})
     end
     puts "Thank you for your purchase. Your reservation is booked. You can access your flight information from either the menu or from your purchase receipt sent to your email address."
     puts "Press enter to return to the menu"
