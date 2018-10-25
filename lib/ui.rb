@@ -12,7 +12,7 @@ class UI
     sleep 0.90
     @full_name = get_name
     @passport_num = get_passport_info
-    @current_person = User.find_by(name: @full_name, passport_id: @passport_num)
+    @current_person = User.create(name: self.full_name, passport_id: self.passport_num)
     menu
 
   end
@@ -26,6 +26,7 @@ class UI
     until valid == true
       puts "Please enter your name (as it appears on your passport): "
       full_name = gets.chomp
+      User.create(name:full_name)
       if full_name.split(' ').count >= 2 #&& full_name.length >= 5 && full_name.chars.all? { |char| char =~ /[[:alpha:]]/ }
           valid = true
       else
@@ -94,7 +95,9 @@ class UI
   end
 
   def account_info
-    puts self.current_person
+    # self.current_person.each do |me|
+    #   puts ""
+    # end
 
   end
   # t.integer  "user_id"
@@ -107,16 +110,34 @@ class UI
     system('clear')
     puts "Please enter your destination (e.g. 'Paris, France'): "
     destination = gets.chomp
-    puts "Enter the day, month and year you would like to depart on: "
-    puts ""
-    # Ticket.create(user_id: self.current_person, flight_id: chosen_flight, )
+    puts "Please enter the departure location, or press enter for all flights to #{destination}."
+    start_location = gets.chomp
+    start_location.empty? ? matched_flights = Flight.all.where(destination: destination) : matched_flights = Flight.all.where(destination: destination, origin: start_location)
+    matched_flights.each_with_index do |flight, idx|
+      puts "All Available Flights: "
+      puts "#{idx + 1}.) \nAirline: #{flight.airline} \nOrigin: #{flight.origin} \nDestination: #{flight.destination} \nDeparture Time: #{flight.departure_time}\n Arrival Time: #{flight.arrival_time}"
+    end
+    puts "Please enter the number associated with the flight to continue booking a reservation."
+    res_num = gets.chomp.to_i
+    puts "Please enter the number of passenger in your party (PLEASE DO NOT include yourself in this count, if there are no additional passengers please press enter to continue.): "
+    party_num = gets.chomp.to_i
+    self.current_person.update(party_count: party_num)
+    0.upto(party_num) do |int|
+      Ticket.create({user_id: self.current_person.id, flight_id: matched_flights[res_num - 1], class_status: 'economy', round_trip?: false, price: rand(100..5000).to_f})
+    end
+    puts "Thank you for your purchase. Your reservation is booked. You can access your flight information from either the menu or from your purchase receipt sent to your email address."
+    puts "Press enter to return to the menu"
+    input = gets.chomp
+    if input.empty?
+      menu
+    end
   end
 
   def cancel_flight
     system('clear')
     puts 'Please enter your flight number: '
     flight_num = gets.chomp.to_i
-    flight = User.flights.find_by(id: flight_num)
+  
 
   end
 
@@ -161,7 +182,7 @@ class UI
         elsif input == 'apply'
           apply_member
         end
-      
+
       end
     else
       puts "I'm sorry you're card cannot be processed at this time. "

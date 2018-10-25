@@ -1,7 +1,7 @@
 # == Schema Information
-#
+
 # Table name: flights
-#
+
 #  id             :integer          not null, primary key
 #  airline        :string
 #  origin         :string
@@ -12,7 +12,7 @@
 #  max_occupancy  :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#
+
 
 
 
