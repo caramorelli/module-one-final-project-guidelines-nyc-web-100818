@@ -40,3 +40,6 @@ Flight.create(
       price: Faker::Number.between(500, 3000)})
 
 end
+
+
+#
