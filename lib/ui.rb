@@ -12,7 +12,7 @@ class UI
     sleep 0.90
     @full_name = get_name
     @passport_num = get_passport_info
-    @current_person = User.create(name: self.full_name, passport_id: self.passport_num)
+    @current_person = User.find_or_create_by(name: self.full_name, passport_id: self.passport_num)
     menu
 
   end
@@ -95,9 +95,11 @@ class UI
   end
 
   def account_info
-    # self.current_person.each do |me|
-    #   puts ""
-    # end
+    self.current_person.each do |key, val|
+      puts '_____________________________________________'
+      puts "#{key} : val"
+      puts '_____________________________________________'
+    end
 
   end
   # t.integer  "user_id"
@@ -137,7 +139,7 @@ class UI
     system('clear')
     puts 'Please enter your flight number: '
     flight_num = gets.chomp.to_i
-
+    self.current_person.tickets.where(flight_id: flight_num).delete
 
   end
 
@@ -150,9 +152,24 @@ class UI
   end
 
   def view_flight_info
-    puts "Please enter your flight number: "
-    flight_num = gets.chomp.to_i
-    self.flights.find_by(id: flight_num)
+    puts "To view your entire flight records input 'all', or enter your flight number: "
+    input = gets.chomp
+    if Integer(input)
+      flight = self.current_person.flights.where(id: input)
+      flight
+
+    else
+      self.current_person.flights.each do |flight|
+        puts flight
+      end
+      puts "Press enter to return to the menu"
+      input = gets.chomp
+      if input.empty?
+        menu
+      end
+    end
+    # flight_num = gets.chomp.to_i
+    # self.flights.find_by(id: flight_num)
 
   end
 
