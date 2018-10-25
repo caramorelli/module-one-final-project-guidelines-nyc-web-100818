@@ -139,7 +139,7 @@ class UI
     system('clear')
     puts 'Please enter your flight number: '
     flight_num = gets.chomp.to_i
-    self.current_person.tickets.where(flight_id: flight_num).delete
+    self.current_person.tickets.where(flight_id: flight_num).each { |ticket| ticket.delete }
 
   end
 
