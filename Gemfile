@@ -6,4 +6,6 @@ gem "sqlite3"
 gem "pry"
 gem "require_all"
 gem "annotate"
-gem 'colorize'
+gem "faker"
+gem "database_cleaner"
+gem "colorize"
