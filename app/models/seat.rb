@@ -13,8 +13,8 @@
 class Seat <ActiveRecord::Base
   belongs_to :flight
 
-  def occupancy(flight)
-    self.select { |plane| plane.id == flight_id && self.occupied? == false }
-  end
+  # def occupancy(flight)
+  #   self.select { |plane| plane.id == flight_id && self.occupied? == false }
+  # end
 
 end

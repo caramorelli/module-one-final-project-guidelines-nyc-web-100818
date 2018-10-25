@@ -20,4 +20,5 @@ class User <ActiveRecord::Base
   has_many :seats, through: :flights
 
 
+
 end
