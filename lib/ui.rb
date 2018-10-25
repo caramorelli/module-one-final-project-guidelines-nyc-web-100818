@@ -26,7 +26,7 @@ class UI
     until valid == true
       puts "Please enter your name (as it appears on your passport): "
       full_name = gets.chomp
-      User.create(name:full_name)
+      # User.create(name:full_name)
       if full_name.split(' ').count >= 2 #&& full_name.length >= 5 && full_name.chars.all? { |char| char =~ /[[:alpha:]]/ }
           valid = true
       else
@@ -71,9 +71,9 @@ class UI
     input = gets.chomp.downcase
 
     case input
-    when 'account' || 'account information'
+    when ('account' || 'account information')
       account_info
-    when 'book' || 'book flight'
+    when ('book' || 'book flight')
       book_flight
     when 'cancel' || 'cancel flight'
       cancel_flight
@@ -137,7 +137,7 @@ class UI
     system('clear')
     puts 'Please enter your flight number: '
     flight_num = gets.chomp.to_i
-  
+
 
   end
 
