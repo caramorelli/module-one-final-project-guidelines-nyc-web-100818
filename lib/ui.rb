@@ -153,6 +153,13 @@ class UI
     flight_num = gets.chomp.to_i
     self.current_person.tickets.where(flight_id: flight_num).each { |ticket| ticket.delete }
 
+    puts "Your flight has been cancelled. Press enter to return to the menu."
+
+    input = gets.chomp
+    if input.empty?
+      menu
+    end
+
   end
 
   def change_flight
@@ -185,13 +192,20 @@ class UI
   def view_flight_info
 
     self.current_person.flights.each do |flight|
-      puts "#{flight.airline}"
-      puts "#{flight.origin}"
-      puts "#{flight.destination}"
-      puts "#{flight.arrival_time}"
-      puts "#{flight.departure_time}"
-      puts "#{flight.duration}"
+      puts "Airline : #{flight.airline}"
+      puts "Origin : #{flight.origin}"
+      puts "Destination: #{flight.destination}"
+      puts "Departure Time: #{flight.departure_time}"
+      puts "Arrival Time: #{flight.arrival_time}"
+      puts "Duration: #{flight.duration}"
     end
+    
+    puts "Press enter to return to the menu"
+    input = gets.chomp
+    if input.empty?
+      menu
+    end
+
   end
 
   def flight_num_validation
