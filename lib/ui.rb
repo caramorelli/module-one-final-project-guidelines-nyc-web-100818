@@ -106,7 +106,7 @@ class UI
     puts "Membership: #{self.current_person.membership}"
     puts "Tickets: #{self.current_person.tickets.count}"
 
-    puts "Press enter to return to the menu"
+    
     return_to_menu
 
   end
