@@ -1,4 +1,4 @@
-
+require "pry"
 class UI
   # AIRPLANE = [
   #   [{ 'seat_class' => 'first', 'occupancy_status' => false, 'ad_price' => nil }, {'seat_class' => 'first', 'occupancy_status' => false, 'ad_price' => nil}, {'seat_class' => 'first', 'occupancy_status' => false, 'ad_price' => nil}, {'seat_class' => 'first', 'occupancy_status' => false, 'ad_price' => nil}],
@@ -95,13 +95,24 @@ class UI
   end
 
   def account_info
-    self.current_person.each do |key, val|
-      puts '_____________________________________________'
-      puts "#{key} : val"
-      puts '_____________________________________________'
+    # self.current_person.each do |key, val|
+    #   puts '_____________________________________________'
+    #   puts "#{key} : val"
+    #   puts '_____________________________________________'
+    # end
+    puts "Name : #{self.current_person.name}"
+    puts "Passport ID: #{self.current_person.passport_id}"
+    puts "Travel Points: #{self.current_person.travel_points}"
+    puts "Membership: #{self.current_person.membership}"
+
+    puts "Press enter to return to the menu"
+    input = gets.chomp
+    if input.empty?
+      menu
     end
 
   end
+
   # t.integer  "user_id"
   # t.integer  "flight_id"
   # t.string   "class_status"
@@ -157,7 +168,6 @@ class UI
     if Integer(input)
       flight = self.current_person.flights.where(id: input)
       flight
-
     else
       self.current_person.flights.each do |flight|
         puts flight
