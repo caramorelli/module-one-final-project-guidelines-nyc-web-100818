@@ -107,10 +107,7 @@ class UI
     puts "Tickets: #{self.current_person.tickets.count}"
 
     puts "Press enter to return to the menu"
-    input = gets.chomp
-    if input.empty?
-      menu
-    end
+    return_to_menu
 
   end
 
@@ -141,10 +138,7 @@ class UI
     end
     puts "Thank you for your purchase. Your reservation is booked. You can access your flight information from either the menu or from your purchase receipt sent to your email address."
     puts "Press enter to return to the menu"
-    input = gets.chomp
-    if input.empty?
-      menu
-    end
+    return_to_menu
   end
 
   def cancel_flight
@@ -155,10 +149,7 @@ class UI
 
     puts "Your flight has been cancelled. Press enter to return to the menu."
 
-    input = gets.chomp
-    if input.empty?
-      menu
-    end
+    return_to_menu
 
   end
 
@@ -192,21 +183,31 @@ class UI
   def view_flight_info
 
     self.current_person.flights.each do |flight|
+      puts "----------------------------------------"
       puts "Airline : #{flight.airline}"
       puts "Origin : #{flight.origin}"
       puts "Destination: #{flight.destination}"
       puts "Departure Time: #{flight.departure_time}"
       puts "Arrival Time: #{flight.arrival_time}"
       puts "Duration: #{flight.duration}"
+      puts ""
+      puts "----------------------------------------"
+
     end
-    
+    return_to_menu
+  end
+
+  def return_to_menu
     puts "Press enter to return to the menu"
     input = gets.chomp
     if input.empty?
       menu
+    else
+      puts "I'm sorry, your input is invalid. Would you like to return to the menu?"
+      return_to_menu
     end
-
   end
+
 
   def flight_num_validation
     puts "Please enter your flight number: "
@@ -246,6 +247,7 @@ class UI
         apply_member
       end
     end
+    return_to_menu
   end
 
   def valid_card?(cc_name, cc_num)
@@ -261,10 +263,7 @@ class UI
     puts "email: ourapp@some_company.com"
     puts "phone: 1-800-000-0000"
     puts "\nPress the enter key to return to the menu"
-    input = gets.chomp
-    if input.empty?
-      menu
-    end
+    return_to_menu
   end
 
 end
