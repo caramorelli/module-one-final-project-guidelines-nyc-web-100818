@@ -163,25 +163,35 @@ class UI
 
   end
 
-  def view_flight_info
-    puts "To view your entire flight records input 'all', or enter your flight number: "
-    input = gets.chomp
-    if Integer(input)
-      flight = self.current_person.flights.where(id: input)
-      flight
-    else
-      self.current_person.flights.each do |flight|
-        puts flight
-      end
-      puts "Press enter to return to the menu"
-      input = gets.chomp
-      if input.empty?
-        menu
-      end
-    end
-    # flight_num = gets.chomp.to_i
-    # self.flights.find_by(id: flight_num)
+  # def view_flight_info
+  #   puts "To view your entire flight records input 'all', or enter your flight number: "
+  #   input = gets.chomp
+  #   if Integer(input)
+  #     flight = self.current_person.flights.where(id: input)
+  #     flight
+  #   else
+  #     self.current_person.flights.each do |flight|
+  #       puts flight
+  #     end
+  #     puts "Press enter to return to the menu"
+  #     input = gets.chomp
+  #     if input.empty?
+  #       menu
+  #     end
+  #   end
+  #   # flight_num = gets.chomp.to_i
+  #   # self.flights.find_by(id: flight_num)
 
+  def view_flight_info
+
+    self.current_person.flights.each do |flight|
+      puts "#{flight.airline}"
+      puts "#{flight.origin}"
+      puts "#{flight.destination}"
+      puts "#{flight.arrival_time}"
+      puts "#{flight.departure_time}"
+      puts "#{flight.duration}"
+    end
   end
 
   def flight_num_validation
