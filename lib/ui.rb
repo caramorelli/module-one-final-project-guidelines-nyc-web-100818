@@ -104,6 +104,7 @@ class UI
     puts "Passport ID: #{self.current_person.passport_id}"
     puts "Travel Points: #{self.current_person.travel_points}"
     puts "Membership: #{self.current_person.membership}"
+    puts "Tickets: #{self.current_person.tickets.count}"
 
     puts "Press enter to return to the menu"
     input = gets.chomp
