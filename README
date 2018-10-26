@@ -1,0 +1,25 @@
+Readme:
+
+The application is generate when you run `ruby bin/run.rb`
+
+ - The application starts by welcoming the user and asks the user for their full legal name (the name that appears on their passport)
+ - After testing whether the name has at least a first and last name, and checking each name for a reasonable length will it then ask for your unique passport number
+ - After testing the passport number the system either creates or finds the user
+ - The the menu is launched with instructions and options for the user to choose from
+     -  The user can book a flight which will also make tickets (amount depending on their party size); asking for a destination and/or origin location,
+           the user can see all the flights available with the requested information
+     - The user also has the option to view ticket information history- knows all their reservations past and future
+     - Can access their own account information
+     - Can cancel a flight
+     - Can view contact information when in need of help
+     - can exit the program
+     - With more time we would correct --
+         ~ How to Change a user's flight
+         ~ How to successfully check a credit card for a payment for booking a flight, changing a flight, maybe upgrading seats, and applying for membership
+         ~ Better update procedure for flight/ticket cancellation
+         ~ Some kind of procedure to check if seats are getting filled (we created a Seat model but it was left unused)
+
+
+    - What we learned?
+      - Booking tickets is hard, validation of user input at every step is necessary (or is it?)
+      -
